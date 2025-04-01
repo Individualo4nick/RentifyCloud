@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BusinessAccountRegistrationResponseDto {
+public class CompanyAccountRegistrationResponseDto {
     private long id;
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class SSOSystemUserDetails {
+public class SSOUserDetails {
     private String ssoSystemId;
     private String username;
     private String firstName;

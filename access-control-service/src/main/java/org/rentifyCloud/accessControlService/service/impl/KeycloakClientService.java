@@ -6,7 +6,7 @@ import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
 import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
-import org.rentifyCloud.accessControlService.dto.SSOSystemUserDetails;
+import org.rentifyCloud.accessControlService.dto.SSOUserDetails;
 import org.rentifyCloud.accessControlService.service.SSOClientService;
 import org.rentifyCloud.accessControlService.utils.SecurityUtilsService;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,7 +47,7 @@ public class KeycloakClientService implements SSOClientService {
 
     @Override
     @Cacheable(key = "#root.args[0]", cacheNames = "userSSO")
-    public SSOSystemUserDetails getUserDetails(String ssoSystemUserId) {
+    public SSOUserDetails getUserDetails(String ssoSystemUserId) {
         var user = userRealmKeycloak.realm(realm).users().get(ssoSystemUserId);
         var kcud = marshalAsUserDetails(user.toRepresentation());
         kcud.setRoles(user.roles().realmLevel().listEffective().stream().map(RoleRepresentation::getName)
@@ -55,8 +55,8 @@ public class KeycloakClientService implements SSOClientService {
         return kcud;
     }
 
-    private SSOSystemUserDetails marshalAsUserDetails(UserRepresentation ur) {
-        var kcud = new SSOSystemUserDetails();
+    private SSOUserDetails marshalAsUserDetails(UserRepresentation ur) {
+        var kcud = new SSOUserDetails();
         kcud.setSsoSystemId(ur.getId());
         kcud.setUsername(ur.getUsername());
         kcud.setFirstName(ur.getFirstName());

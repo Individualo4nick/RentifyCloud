@@ -1,11 +1,11 @@
 package org.rentifyCloud.accessControlService.service;
 
-import org.rentifyCloud.accessControlService.dto.SSOSystemUserDetails;
+import org.rentifyCloud.accessControlService.dto.SSOUserDetails;
 
 import java.util.List;
 
 public interface SSOClientService {
-    SSOSystemUserDetails getUserDetails(String ssoSystemUserId);
+    SSOUserDetails getUserDetails(String ssoSystemUserId);
 
     void createRole(String ssoSystemRoleName);
 

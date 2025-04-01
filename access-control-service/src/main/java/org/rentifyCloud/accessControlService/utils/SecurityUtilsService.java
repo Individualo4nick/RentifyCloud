@@ -1,6 +1,6 @@
 package org.rentifyCloud.accessControlService.utils;
 
-import org.rentifyCloud.accessControlService.enums.BusinessAccountRoleEnum;
+import org.rentifyCloud.accessControlService.enums.CompanyAccountRoleEnum;
 import org.rentifyCloud.accessControlService.service.SSOClientService;
 import org.springframework.stereotype.Component;
 
@@ -16,16 +16,16 @@ public class SecurityUtilsService {
         return roleName.startsWith(Constants.RENTIFY_ROLE_PREFIX);
     }
 
-    public void createBARoles(long businessAccountId) {
-        var adminRoleName = formRoleNameForAccount(BusinessAccountRoleEnum.RENTIFY_ROLE_BA__ADMIN, businessAccountId);
-        var storekeeperRoleName = formRoleNameForAccount(BusinessAccountRoleEnum.RENTIFY_ROLE_BA__STOREKEEPER, businessAccountId);
+    public void createCARoles(long companyAccountId) {
+        var adminRoleName = formRoleNameForAccount(CompanyAccountRoleEnum.RENTIFY_ROLE_CA__ADMIN, companyAccountId);
+        var storekeeperRoleName = formRoleNameForAccount(CompanyAccountRoleEnum.RENTIFY_ROLE_CA__STOREKEEPER, companyAccountId);
 
         ssoClientService.createRole(adminRoleName);
         ssoClientService.createRole(storekeeperRoleName);
     }
 
-    public String formRoleNameForAccount(BusinessAccountRoleEnum businessAccountRoleEnum, long businessAccountId){
-        return Constants.RENTIFY_BA_ROLE_PREFIX + businessAccountId + "__" + businessAccountRoleEnum.name().substring(Constants.RENTIFY_BA_ROLE_PREFIX.length());
+    public String formRoleNameForAccount(CompanyAccountRoleEnum companyAccountRoleEnum, long companyAccountId){
+        return Constants.RENTIFY_CA_ROLE_PREFIX + companyAccountId + "__" + companyAccountRoleEnum.name().substring(Constants.RENTIFY_CA_ROLE_PREFIX.length());
     }
 
 

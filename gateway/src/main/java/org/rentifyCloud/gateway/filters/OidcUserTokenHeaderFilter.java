@@ -1,6 +1,5 @@
 package org.rentifyCloud.gateway.filters;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.http.server.reactive.ServerHttpRequest;

@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BusinessAccountRegistrationRequestDto {
+public class CompanyAccountRegistrationRequestDto {
     private String shortName;
     private String fullName;
     private String type;
