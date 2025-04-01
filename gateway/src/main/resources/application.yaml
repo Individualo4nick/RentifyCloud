@@ -40,10 +40,10 @@ spring:
             allowedHeaders: "*"
         add-to-simple-url-handler-mapping: true
       routes:
-        - id: registerBusinessAccount
-          uri: lb://AUTHORIZATION-SERVICE
+        - id: registerCompanyAccount
+          uri: lb://ACCESS-CONTROL-SERVICE
           predicates:
-            - Path=/api/auth/business-account/register
+            - Path=/api/auth/company-account/register
 eureka:
   client:
     service-url.defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
@@ -51,4 +51,4 @@ eureka:
         preferIpAddress: true
 
 server:
-  port: 8082
+  port: 80

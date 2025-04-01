@@ -14,7 +14,7 @@ public class CompanyAccount extends AbstractVersionedEntity {
     @Column(name = "short_name", nullable = false, length = 60)
     private String shortName;
 
-    @Column(name = "full_name", nullable = false, length = 120)
+    @Column(name = "full_name", length = 120)
     private String fullName;
 
     @Column(name = "type", nullable = false, length = 30)

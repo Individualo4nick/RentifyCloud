@@ -26,7 +26,7 @@ public class CompanyAccountController {
     }
 
     @PostMapping("/register")
-    public void registerBusinessAccount(@RequestBody CompanyAccountRegistrationRequestDto companyAccountRegistrationRequestDto, @RequestHeader("oidc-user-subject") String oidcUserSubject) {
+    public ResponseEntity<?> registerCompanyAccount(@RequestBody CompanyAccountRegistrationRequestDto companyAccountRegistrationRequestDto, @RequestHeader("oidc-user-subject") String oidcUserSubject) {
         ResponseEntity<CompanyAccountRegistrationResponseDto> response = rentifyBusinessWebCLient.post().uri("/api/rentify/company-account/register")
                 .body(Mono.just(companyAccountRegistrationRequestDto), CompanyAccountRegistrationRequestDto.class)
                 .exchangeToMono(r -> r.toEntity(CompanyAccountRegistrationResponseDto.class))
@@ -37,5 +37,6 @@ public class CompanyAccountController {
             var adminRole = List.of(securityUtilsService.formRoleNameForAccount(CompanyAccountRoleEnum.RENTIFY_ROLE_CA__ADMIN, companyAccountId));
             ssoClientService.addRolesToUser(oidcUserSubject, adminRole);
         }
+        return response;
     }
 }

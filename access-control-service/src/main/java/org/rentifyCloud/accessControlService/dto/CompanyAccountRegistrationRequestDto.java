@@ -7,6 +7,17 @@ import lombok.Setter;
 @Setter
 public class CompanyAccountRegistrationRequestDto {
     private String shortName;
+
     private String fullName;
-    private String type;
+
+    private Double defaultTax;
+
+    private String country;
+
+    private String baseCurrency;
+
+    private int zoneOffset;
+
+    private int defaultShiftLength;
 }
+
