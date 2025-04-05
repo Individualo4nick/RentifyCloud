@@ -9,6 +9,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Instance extends AbstractVersionedEntity {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_account_id", referencedColumnName = "id", nullable = false)
+    private CompanyAccount companyAccount;
+
     @Column(name = "short_name", nullable = false, length = 60)
     private String shortName;
 
@@ -19,7 +23,7 @@ public class Instance extends AbstractVersionedEntity {
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     private Product product;
 
-    @Column(name = "inventory_number", nullable = false, length = 30)
+    @Column(name = "inventory_number", length = 30)
     private String inventoryNumber;
 
     @Column(name = "barcode", length = 30)
@@ -28,7 +32,8 @@ public class Instance extends AbstractVersionedEntity {
     @Column(name = "serial_number", length = 30)
     private String serialNumber;
 
-    @Column(name = "state", length = 30)
+    @Column(name = "state", nullable = false, length = 30)
+    @Enumerated(EnumType.STRING)
     private InstanceStateEnum state;
 
     public enum InstanceStateEnum {

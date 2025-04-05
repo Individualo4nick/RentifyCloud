@@ -1,6 +1,8 @@
 package org.rentifycloud.rentservice.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -8,6 +10,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "image")
+@Getter
+@Setter
 public class Image extends AbstractVersionedEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_account_id", referencedColumnName = "id", nullable = false)
